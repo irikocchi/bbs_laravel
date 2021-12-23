@@ -141,8 +141,11 @@ class MessagesController extends Controller
      */
     public function show(Message $message)
     {
-        // フラッシュメッセージをnullにセット
-        $flash_message = null;
+         // フラッシュメッセージをセッションから取得
+        $flash_message = session('flash_message');
+        // セッション情報の破棄
+        session()->forget('flash_message');
+        
         // エラーメッセージをnullにセット
         $errors = null;
         
@@ -158,7 +161,18 @@ class MessagesController extends Controller
      */
     public function edit(Message $message)
     {
-        dd('edit');
+        
+        // フラッシュメッセージをnullにセット
+        $flash_message = null;
+        
+        // エラーメッセージをセッションから取得
+        $errors = session('errors');
+        // セッション情報の破棄
+        // Laravelでセッションから指定の変数を削除(定型文)
+        session()->forget('errors');
+        
+        // 連想配列のデータを3セット（viewで引き出すキーワードと値のセット）引き連れてviewを呼び出す
+        return view('messages.edit', compact('message', 'flash_message', 'errors'));
     }
 
     /**
