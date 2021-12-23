@@ -10,7 +10,7 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">名前</label>
                         <div class="col-10">
-                            <input type="text" class="form-control" name="name" value="{{ $message->name }}">
+                            <input type="text" class="form-control" name="name" value="{{ old('name') ? old('name') : $message->name }}">
                         </div>
                     </div>
                 
@@ -18,7 +18,7 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">タイトル</label>
                         <div class="col-10">
-                            <input type="text" class="form-control" name="title" value="{{ $message->title }}">
+                            <input type="text" class="form-control" name="title" value="{{ old('title') ? old('title') : $message->title }}">
                         </div>
                     </div>
                     
@@ -26,14 +26,14 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">内容</label>
                         <div class="col-10">
-                            <input type="text" class="form-control" name="body" value="{{ $message->body }}">
+                            <input type="text" class="form-control" name="body" value="{{ old('body') ? old('body') : $message->body }}">
                         </div>
                     </div>
                     
                     <div class="form-group row">
                         <label class="col-2 col-form-label">画像アップロード</label>
                         <div class="col-3">
-                            <input type="file" name="image" accept='image/*' onchange="previewImage(this);">
+                            <input type="file" name="image" accept='image/' onchange="previewImage(this);">
                         </div>
                         <div class="col-7">
                             <img id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="max-width:200px;">
@@ -48,7 +48,7 @@
                     </div>
                 </form>
             </div>
-            <div class="row mt-5">
+             <div class="row mt-5">
                 <a href="/" class="btn btn-primary">投稿一覧</a>
             </div>
 @endsection
